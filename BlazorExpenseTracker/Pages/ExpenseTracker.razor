@@ -1,0 +1,48 @@
+﻿@page "/expensetracker"
+@using BlazorExpenseTracker.Components
+@using Model
+@implements IDisposable
+
+<h3>ExpenseTracker</h3>
+<CascadingValue Value="expense">
+    <TabControl>
+        <TabTitle>
+            <img src="imagenes/@(context.ImageSourge).png" width="30" height="25" /> @context.Text
+        </TabTitle>
+        <ChildContent>
+            <TabPage Text="Expense" ImageSourge="Menos">
+                <ExpenseDetails ExpenseType="@Model.ExpenseType.Expens"></ExpenseDetails>
+            </TabPage>
+            <TabPage Text="Income" ImageSourge="Mas">
+                <ExpenseDetails ExpenseType="@Model.ExpenseType.Incote"></ExpenseDetails>
+            </TabPage>
+        </ChildContent>
+    </TabControl>
+
+    <ExpenseHistory>
+
+    </ExpenseHistory>
+</CascadingValue>
+
+@code {
+    public Expense expense;
+    /// <summary>
+    /// realiza el cambio del componente si hay un evento
+    /// </summary>
+    /// <returns></returns>
+    protected override Task OnInitializedAsync()
+    {
+        expense = new Expense();
+        expense.OnselectedExpenseChanged += StateHasChanged;
+        return base.OnInitializedAsync();
+    }
+    /// <summary>
+    /// Valida el cambio para borrar la información del componente que cambio
+    /// </summary>
+    public void Dispose()
+    {
+        expense.OnselectedExpenseChanged -= StateHasChanged;
+    
+    }
+
+}

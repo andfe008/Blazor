@@ -1,0 +1,89 @@
+﻿@page "/CategoryDelete"
+@page "/CategoryDelete/{id:int}"
+@using Model
+@using Interfaces
+@inject ICategoryServices categoryService
+@inject NavigationManager NavigationManager
+
+
+<div class="modal" tabindex="-1" style="display:block" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h3>Delete</h3>
+
+            </div>
+            <div class="modal-body">
+                <EditForm Model="@categoty" OnValidSubmit="DeleteCategory">
+                    <DataAnnotationsValidator />
+
+                    <table class="table">
+
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td><input type="text" @bind="categoty.Name" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><ValidationMessage For="@(()=> categoty.Name)"></ValidationMessage></td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align:center">
+                                    <input class="alert-danger" type="button" value="Yes" @onclick="DeleteCategory" />
+                                    <input class="alert-success" type="button" value="No" @onclick="No" />
+
+                                </td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </EditForm>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+@code {
+    [Parameter]
+
+    public int Id { get; set; }
+
+    Category categoty = new Category();
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        if (Id > 0)
+            categoty = await categoryService.GetCategoryDetails(Id);
+    }
+
+    public async Task DeleteCategory()
+    {
+        await categoryService.DeleteCategory(Id);
+        NavigateToCategories();
+    }
+
+    public void No()
+    {
+        NavigateToCategories();
+    }
+
+    public void NavigateToCategories()
+    {
+        NavigationManager.NavigateTo("/categories");
+    }
+
+
+
+
+}

@@ -1,0 +1,78 @@
+﻿@using Model
+@using Interfaces
+@inject IExpenseService expenseServices
+
+<h1>History</h1>
+<p> @Message</p>
+
+@if (expenses == null)
+{
+    <p><em>Loading....</em></p>
+}
+else
+{
+    <table class="table table-bordered table-light table-hover">
+        <thead>
+            <tr>
+                <th>CategoryId</th>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var expense in expenses)
+            {
+                <tr @onclick="@(()=> SelectedExpenseChange(expense.Id))">
+                    <td>@expense.Category.Id</td>
+                    <td style="@GetTextColor(expense.Id)">@expense.Amount</td>
+                    <td>@expense.Category.Name</td>
+                    <td>@expense.TransactionDate.ToString("dd-MM-yyyy")</td>
+                </tr>
+            } 
+        </tbody>
+
+    </table>
+}
+
+
+
+
+@code {
+    public IEnumerable<Expense> expenses { get; set; }
+    public string Message { get; set; }
+    [CascadingParameter] protected Expense SelectedExpense { get; set; }// valor compartido entre componentes
+    /// <summary>
+    /// cuando el usuario hace click en la tabla de dispara el evento para cambiar el valor
+    /// </summary>
+    /// <param name="expenseId"></param>
+    /// <returns></returns>
+    protected async Task SelectedExpenseChange(int expenseId)
+    {
+        var expense = await expenseServices.GetExpenseDetails(expenseId);
+        SelectedExpense.SelectedExpenseChanged(expense);
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        try
+        {
+            expenses = (await expenseServices.GetAllExpense());
+        }
+        catch (Exception e)
+        {
+            Message = "Something went wromg....." + e.Message;
+        }
+    }
+    protected string GetTextColor(int expenseId)
+    {
+        var exp = expenses.FirstOrDefault(e=> e.Id == expenseId);
+        return exp.ExpenseType == ExpenseType.Incote ? "color:green" : "color:red";
+    }
+
+   
+
+
+
+}

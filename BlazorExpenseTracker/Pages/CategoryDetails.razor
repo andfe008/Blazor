@@ -1,0 +1,85 @@
+﻿@page "/CategoryDetails"
+@page "/CategoryDetails/{id:int}"
+@using Model
+@using Interfaces
+@inject ICategoryServices categoryService
+@inject NavigationManager NavigationManager
+
+
+<div class="modal" tabindex="-1" style="display:block" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1>CategoryDetails</h1>
+            </div>
+            <div class="modal-body">
+                <EditForm Model="@categoty" OnValidSubmit="SaveCategory">
+                    <DataAnnotationsValidator />
+                    <table class="table">
+
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td><input type="text" @bind="categoty.Name" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><ValidationMessage For="@(()=> categoty.Name)"></ValidationMessage></td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align:center">
+                                    <input type="submit" value="save" />
+                                    <input class="alert-success" type="button" value="Cancel" @onclick="Cancel" />
+                                </td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+
+                </EditForm>
+            </div>
+
+        </div>
+    </div>
+    
+</div>
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    Category categoty = new Category();
+
+    protected async override Task OnInitializedAsync()
+    {
+        if (Id > 0)
+        {
+            categoty = await categoryService.GetCategoryDetails(Id);
+        }
+    }
+
+    protected async Task SaveCategory()
+    {
+        await categoryService.SaveCategory(categoty);
+        NavigateToCategories();
+
+    }
+
+    public void Cancel()
+    {
+        NavigateToCategories();
+    }
+    public void NavigateToCategories()
+    {
+        NavigationManager.NavigateTo("/categories");
+    }
+
+
+
+
+
+
+}

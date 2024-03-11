@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Contracts" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorExpenseTracker.Data\BlazorExpenseTracker.Data.csproj" />
+    <ProjectReference Include="..\BlazorExpenseTracker.Model\BlazorExpenseTracker.Model.csproj" />
+    <ProjectReference Include="..\BlazorExpenseTracker\BlazorExpenseTracker.csproj" />
+  </ItemGroup>
+
+
+</Project>

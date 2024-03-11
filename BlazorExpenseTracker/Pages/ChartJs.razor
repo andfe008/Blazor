@@ -1,0 +1,36 @@
+﻿@page "/chart"
+@using Model
+@using Interfaces
+@inject IExpenseService expenseService
+
+
+<h3>ChartJs</h3>
+
+<p>@Message</p>
+@if (expenses == null)
+{
+    <p><em>Loading....</em></p>
+}
+else
+{
+    
+}
+
+
+@code {
+
+    public IEnumerable<Expense> expenses { get; set; }
+    public string Message { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            expenses = await expenseService.GetAllExpense();
+        }
+        catch (Exception e)
+        {
+
+            Message = "Something went wromg" + e.Message;
+        }
+    }
+}

@@ -1,0 +1,11 @@
+C:\Users\Andres\DoctorApp\BlazorExpenseTracker\BlazorExpenseTracker.Model\bin\Debug\net7.0\BlazorExpenseTracker.Model.deps.json
+C:\Users\Andres\DoctorApp\BlazorExpenseTracker\BlazorExpenseTracker.Model\bin\Debug\net7.0\BlazorExpenseTracker.Model.dll
+C:\Users\Andres\DoctorApp\BlazorExpenseTracker\BlazorExpenseTracker.Model\bin\Debug\net7.0\BlazorExpenseTracker.Model.pdb
+C:\Users\Andres\DoctorApp\BlazorExpenseTracker\BlazorExpenseTracker.Model\obj\Debug\net7.0\BlazorExpenseTracker.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Andres\DoctorApp\BlazorExpenseTracker\BlazorExpenseTracker.Model\obj\Debug\net7.0\BlazorExpenseTracker.Model.AssemblyInfoInputs.cache
+C:\Users\Andres\DoctorApp\BlazorExpenseTracker\BlazorExpenseTracker.Model\obj\Debug\net7.0\BlazorExpenseTracker.Model.AssemblyInfo.cs
+C:\Users\Andres\DoctorApp\BlazorExpenseTracker\BlazorExpenseTracker.Model\obj\Debug\net7.0\BlazorExpenseTracker.Model.csproj.CoreCompileInputs.cache
+C:\Users\Andres\DoctorApp\BlazorExpenseTracker\BlazorExpenseTracker.Model\obj\Debug\net7.0\BlazorExpenseTracker.Model.dll
+C:\Users\Andres\DoctorApp\BlazorExpenseTracker\BlazorExpenseTracker.Model\obj\Debug\net7.0\refint\BlazorExpenseTracker.Model.dll
+C:\Users\Andres\DoctorApp\BlazorExpenseTracker\BlazorExpenseTracker.Model\obj\Debug\net7.0\BlazorExpenseTracker.Model.pdb
+C:\Users\Andres\DoctorApp\BlazorExpenseTracker\BlazorExpenseTracker.Model\obj\Debug\net7.0\ref\BlazorExpenseTracker.Model.dll
